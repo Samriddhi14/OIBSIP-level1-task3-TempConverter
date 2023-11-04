@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #03001C;
+            text-align: center;
+            margin: 0;
+            padding-top: 100px;
+        }
+
+        .container {
+            background-color: #7286D3;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 10px 10px 20px rgba(231, 155, 227, 0.888);
+            max-width: 400px;
+            margin: 0 auto;
+            margin-bottom: 60px; 
+        }
+
+        input[type="number"] {
+            width: 94%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #112336;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        #resultArea {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        .animated-text {
+            font-size: 32px;
+            transition: color 0.5s, font-size 0.5s;
+        }
+
+        .animated-text:hover {
+            color: #E5E0FF;
+            font-size: 45px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 20px;
+            color: #E5E0FF;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="animated-text">TEMPERATURE CONVERTER</h1>
+        <input type="number" id="temperatureInput" placeholder="Enter temperature" required>
+        <select id="unitSelect">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+        </select>
+        <button id="convertButton">Convert</button>
+        <div id="resultArea" class="animated-text"></div>
+    </div>
+
+    <footer>
+        <p>With Love ❤ Samriddhi Mishra</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const temperatureInput = document.getElementById("temperatureInput");
+    const unitSelect = document.getElementById("unitSelect");
+    const convertButton = document.getElementById("convertButton");
+    const resultArea = document.getElementById("resultArea");
+
+    function convertTemperature() {
+        const temperature = parseFloat(temperatureInput.value);
+
+        if (isNaN(temperature)) {
+            resultArea.textContent = "Please enter a valid number.";
+            return;
+        }
+
+        const unit = unitSelect.value;
+
+        if (unit === "celsius") {
+            const fahrenheit = (temperature * 9/5) + 32;
+            resultArea.innerHTML = `${temperature}°C is ${fahrenheit.toFixed(2)}°F`;
+        } else if (unit === "fahrenheit") {
+            const celsius = (temperature - 32) * 5/9;
+            resultArea.innerHTML = `${temperature}°F is ${celsius.toFixed(2)}°C`;
+        }
+    }
+
+    convertButton.addEventListener("click", convertTemperature);
+});
+
+    </script>
+
+</body>
+
+</html>
